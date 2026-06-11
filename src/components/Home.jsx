@@ -66,7 +66,27 @@ const Home = () => {
 
     // Iniciar la animación al montar el componente
     React.useEffect(() => {
+        let isMounted = true;
+
+        const animateLinearGradient = async () => {
+            while (isMounted) {
+                await controls.start({
+                    background: 'linear-gradient(to right, #F57689, #FDB7C0, #FFA7AE)',
+                    transition: { duration: 2, ease: 'linear' },
+                });
+                if (!isMounted) break;
+                await controls.start({
+                    background: 'linear-gradient(to right, #FFA7AE, #F57689, #FDB7C0)',
+                    transition: { duration: 2, ease: 'linear' },
+                });
+            }
+        };
+
         animateLinearGradient();
+
+        return () => {
+            isMounted = false;
+        };
     }, []);
 
 
