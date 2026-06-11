@@ -1,0 +1,89 @@
+.title_left {
+    color: var(--color-1);
+}
+
+.main_page {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.text_right {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 3%;
+}
+
+.greeting {
+    color: var(--color-3);
+    font-size: 1.3vw;
+}
+
+.title_right {
+    font-size: 3vw;
+    opacity: 20%;
+}
+
+
+.section_left {
+    padding: 5%;
+}
+
+.section_left div {
+    padding: 2%;
+    width: 30vw;
+}
+
+.section_left div p {
+    font-family: var(--font-2);
+    margin-bottom: 1%;
+}
+
+.section_left .title_left {
+    font-size: 3vw;
+    margin: 2% 0% 2% 0%;
+}
+
+.buttons_box {
+    height: 9vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+
+
+.button_contact {
+    background-color: var(--color-3);
+    color: var(--color-1);
+
+}
+
+.button_projects {
+    background-color: var(--color-1);
+    color: var(--color-4);
+}
+
+.button_contact,
+.button_projects {
+    font-size: 1.4vw;
+    border: none;
+    border-radius: 30rem;
+    height: 100%;
+    width: 45%;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+@media screen and (width <=800px) {
+    .element {
+        /* La media query se aplica para 
+         resoluciones menores o iguales a 800px */
+    }
+}

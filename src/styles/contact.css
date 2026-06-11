@@ -1,0 +1,56 @@
+.main_contact {
+    height: 100vh;
+    width: vw;
+    background-color: var(--color-1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2%;
+}
+
+.title_contact {
+    font-size: 4vw;
+    color: var(--color-2);
+    margin: 3%;
+}
+
+.subtitle_contact {
+    font-family: var(--font-2);
+    font-size: 2vw;
+    color: var(--color-2);
+    width: 18%;
+    align-self: first baseline;
+    margin: 0% 5% 0% 5%;
+}
+
+.social_media {
+    border-top: var(--color-2) solid 1px;
+    border-bottom: var(--color-2) solid 1px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 90%;
+    margin: 3%;
+    padding: 3%;
+}
+
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding: 2%;
+}
+
+.info_media {
+    margin: 2%;
+}
+
+.info_media h2, .username {
+    color: var(--color-2);
+    font-family: var(--font-2);
+    font-size: 1.4vw;
+}
+
+.icon {
+    height: 4vw;
+    width: 4vw;
+}

@@ -1,0 +1,98 @@
+.main_menu {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-2);
+}
+
+.navbar_menu {
+    background-color: var(--color-1);
+    display: flex;
+    justify-content: space-between;
+    padding: 1%;
+    height: 10%;
+}
+
+.navbar_menu p {
+    color: var(--color-3);
+    font-size: 1.5vw;
+}
+
+.navbar_menu .nav_item {
+    height: 2rem;
+    width: 2rem;
+}
+
+.two_parts {
+    display: flex;
+    flex: 1;
+}
+
+.section_left_menu, .section_right_menu {
+    width: 50%;
+}
+
+.section_left_menu {
+    background-color: var(--color-1);
+}
+
+.box_menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.items_menu {
+    display: flex;
+    align-items: center;
+    width: 60%;
+    padding: 4%;
+}
+
+.num_item {
+    color: var(--color-2);
+    font-size: 1vw;
+    margin-right: 2vw;
+}
+
+.menu_link {
+    text-decoration: none;
+}
+
+.name_item {
+    color: var(--color-2);
+    font-size: 4vw;
+    border-bottom: 1px var(--color-2) solid;
+    width: 20vw;
+    padding: 2%;
+}
+
+.section_right_menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box_text_right {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    padding: 1%;
+}
+
+.box_text_right h2 {
+    color: var(--color-1);
+    font-size: 2vw;
+    margin: 5%;
+}
+
+.box_text_right p {
+    margin: 5%;
+    font-family: var(--font-2);
+}
+
+.box_text_right h3 {
+    margin: 5%;
+}

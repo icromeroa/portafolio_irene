@@ -1,0 +1,67 @@
+.main_page {
+    height: 100vh;
+    width: 100vw;
+}
+
+.line_left {
+    width: 6vw;
+    height: 100%;
+    background: var(--color-1);
+    color: var(--color-2);
+}
+
+.letter {
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    margin: 3vw;
+}
+
+.line_about_me {
+    border-right: 1px var(--color-2) solid;
+    height: 5vw;
+    width: 3vw;
+    margin-top: 2vw;
+}
+
+.main_division {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(160deg, rgba(255,255,255,0) 0%, rgba(255,218,221,1) 35%, rgba(250,118,139,1) 100%);
+}
+
+.about_page {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 3%;
+}
+
+.title_page {
+    color: var(--color-1);
+    font-size: 5vw;
+}
+
+.circle_bg {
+    background: var(--color-3);
+    opacity: 40%;
+    border-radius: 50%;
+    width: 5vw;
+    height: 5vw;
+    position: absolute;
+    z-index: -1;
+    left: 30%;
+}
+
+.stars_bg {
+    height: 8vw;
+    width: 8vw;
+}
+
+.tabs_description {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

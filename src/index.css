@@ -1,0 +1,35 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  font-family: var(--font-1);
+}
+
+@font-face {
+  font-family: "Glitten";
+  src: url("fonts/Glitten.otf");
+}
+
+@font-face {
+  font-family: "Arapey";
+  src: url("fonts/Arapey.ttf");
+}
+
+:root {
+  --font-1: 'Glitten', serif;
+  --font-2: 'Arapey', serif;
+
+  --color-1: #F57689;
+  --color-2: #FFDBDE;
+  --color-3: #FFFFFF;
+  --color-4: #000000;
+  --color-5: #FFD6DA;
+  --color-6: #808080;
+  
+}
+
+body {
+  background-color: var(--color-2);
+  height: 100%;
+  overflow: hidden;
+}

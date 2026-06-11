@@ -1,0 +1,13 @@
+.navbar {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    z-index: 3;
+}
+
+.nav_item {
+    height: 2rem;
+    width: 2rem;
+    margin: .3rem;
+}
+

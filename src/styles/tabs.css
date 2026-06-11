@@ -1,0 +1,65 @@
+.tab_wrapper {
+    width: 80%;
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+    
+}
+
+.tab_header {
+    display: flex;
+    padding: 1vw;
+    
+}
+
+.tab_item {
+    position: relative;
+    
+}
+
+.tab_item a {
+    padding: .4vw 6vw;
+    color: var(--color-4);
+    text-decoration: none;
+    border: 1px solid var(--color-3);
+    border-radius: 30vw;
+    text-align: center;
+    font-size: 1.3vw;
+    margin: 1vw;
+    font-family: var(--font-2);
+    
+}
+
+.tab_item.selected a {
+    color: var(--color-1);
+    background: var(--color-3);
+}
+
+.indicator {
+    position: absolute;
+    bottom: -1.5vw;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--color-1);
+}
+
+.tab_content {
+    flex: 1;
+    padding: 5%;
+    color: var(--color-4);
+    height: 100%;
+    width: 80%;
+    overflow: hidden;
+    
+}
+
+.tab_content h2 {
+    color: var(--color-1);
+    padding-bottom: 2%;
+}
+
+.tab_content p {
+    font-family: var(--font-2);
+    font-size: 140%;
+}
