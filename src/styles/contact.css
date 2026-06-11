@@ -1,26 +1,30 @@
 .main_contact {
-    height: 100vh;
-    width: vw;
+    min-height: 100vh;
+    width: 100%;
     background-color: var(--color-1);
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2%;
+    box-sizing: border-box;
+    padding: 4% 6%;
 }
 
 .title_contact {
-    font-size: 4vw;
+    font-family: var(--font-1); /* Asegurando consistencia de fuentes */
+    font-size: 3.5rem;
     color: var(--color-2);
-    margin: 3%;
+    margin: 2rem 0;
+    text-align: center;
 }
 
 .subtitle_contact {
     font-family: var(--font-2);
-    font-size: 2vw;
+    font-size: 1.5rem;
     color: var(--color-2);
-    width: 18%;
-    align-self: first baseline;
-    margin: 0% 5% 0% 5%;
+    line-height: 1.3;
+    max-width: 400px; /* Cambiado de % a max-width fijo para que no se colapse */
+    align-self: flex-start;
+    margin: 1.5rem 5%;
 }
 
 .social_media {
@@ -29,28 +33,100 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     width: 90%;
-    margin: 3%;
-    padding: 3%;
+    margin-top: 1rem;
+    padding: 2.5rem 0;
+    gap: 1.5rem; /* Separación limpia entre filas y columnas */
 }
 
 .box {
     display: flex;
     align-items: center;
-    justify-content: left;
-    padding: 2%;
+    justify-content: flex-start;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03); /* Un toque sutil interactivo */
+    border-radius: 16px;
+    transition: background 0.2s ease;
 }
 
-.info_media {
-    margin: 2%;
-}
-
-.info_media h2, .username {
-    color: var(--color-2);
-    font-family: var(--font-2);
-    font-size: 1.4vw;
+.box:hover {
+    background: rgba(255, 255, 255, 0.08);
 }
 
 .icon {
-    height: 4vw;
-    width: 4vw;
+    height: 40px; /* Tamaño fijo para que nunca se encoja en PC/móvil */
+    width: 40px;
+    flex-shrink: 0; /* Evita que el texto largo aplaste el icono */
+}
+
+.info_media {
+    margin-left: 1.2rem;
+    overflow: hidden; /* Evita desbordamientos extraños */
+}
+
+.info_media h2 {
+    color: var(--color-2);
+    font-family: var(--font-1);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0 0 0.2rem 0;
+}
+
+.username {
+    color: var(--color-2);
+    font-family: var(--font-2);
+    font-size: 1rem;
+    margin: 0;
+    opacity: 0.85;
+    word-break: break-word; /* Rompe el texto largo (como el correo) si no cabe */
+}
+
+/* ==========================================================================
+   MEDIA QUERY - DISPOSITIVOS MÓVILES (Celulares)
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+    .main_contact {
+        padding: 2rem 1.5rem;
+    }
+
+    .title_contact {
+        font-size: 2.8rem;
+        margin: 1rem 0 1.5rem 0;
+    }
+
+    .subtitle_contact {
+        font-size: 1.15rem;
+        align-self: center; /* Centrado para mejor estética móvil */
+        text-align: center;
+        margin: 0 0 2rem 0;
+        max-width: 100%;
+    }
+
+    .social_media {
+        /* Pasamos de 2 columnas a 1 sola columna para que respire la info */
+        grid-template-columns: 1fr; 
+        width: 100%;
+        padding: 1.5rem 0;
+        gap: 1rem;
+    }
+
+    .box {
+        padding: 0.8rem;
+    }
+
+    .icon {
+        height: 36px;
+        width: 36px;
+    }
+
+    .info_media {
+        margin-left: 1rem;
+    }
+
+    .info_media h2 {
+        font-size: 1.1rem;
+    }
+
+    .username {
+        font-size: 0.9rem; /* Un tamaño sumamente legible y claro en mano */
+    }
 }

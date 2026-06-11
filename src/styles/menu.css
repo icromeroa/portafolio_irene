@@ -11,6 +11,7 @@
     justify-content: space-between;
     padding: 1%;
     height: 10%;
+    align-items: center; /* Centra el texto verticalmente en la barra */
 }
 
 .navbar_menu p {
@@ -28,11 +29,9 @@
     flex: 1;
 }
 
-.section_left_menu, .section_right_menu {
-    width: 50%;
-}
-
+/* --- SECCIÓN IZQUIERDA (MENÚ) --- */
 .section_left_menu {
+    width: 50%;
     background-color: var(--color-1);
 }
 
@@ -69,7 +68,9 @@
     padding: 2%;
 }
 
+/* --- SECCIÓN DERECHA (TEXTO DE BIENVENIDA) --- */
 .section_right_menu {
+    width: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -95,4 +96,53 @@
 
 .box_text_right h3 {
     margin: 5%;
+}
+
+/* ==========================================================================
+   MEDIA QUERY PARA TABLETS Y CELULARES (Max-width: 1024px)
+   ========================================================================== */
+@media screen and (max-width: 1024px) {
+    
+    /* 1. Desaparecemos por completo la columna de texto derecha */
+    .section_right_menu {
+        display: none;
+    }
+
+    /* 2. Hacemos que la sección del menú ocupe el 100% del ancho disponible */
+    .section_left_menu {
+        width: 100%;
+    }
+
+    /* 3. Ajustamos la barra de navegación superior */
+    .navbar_menu p {
+        font-size: 1.2rem;
+        padding-left: 4%;
+    }
+
+    /* 4. Ampliamos las cajas de los enlaces para que sea fácil pulsar en pantallas táctiles */
+    .items_menu {
+        width: 80%;
+        padding: 5% 0;
+        justify-content: center;
+    }
+
+    /* 5. Estabilizamos las fuentes tipográficas para que no dependan del ancho */
+    .num_item {
+        font-size: 1rem;
+        margin-right: 1.5rem;
+    }
+
+    .name_item {
+        font-size: 2.5rem; /* Tamaño fijo, grande y legible */
+        width: 50vw;       /* Le damos más espacio horizontal a la línea decorativa inferior */
+        text-align: left;
+    }
+}
+
+/* Opcional: Ajuste extra para pantallas de celulares muy pequeños */
+@media screen and (max-width: 480px) {
+    .name_item {
+        font-size: 2rem;
+        width: 60vw;
+    }
 }

@@ -12,7 +12,7 @@
 .carousel_viewport {
     width: 100%;
     flex: 1;
-    overflow: hidden; /* Esto oculta las tarjetas 4, 5 y 6 hacia la derecha */
+    overflow: hidden;
     display: flex;
     align-items: center;
 }
@@ -20,12 +20,14 @@
 .carousel_track {
     display: flex;
     width: 100%;
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* Fallback nativo por si Framer colisiona */
     will-change: transform;
 }
 
+/* --- ESTILO BASE DE LA TARJETA (DESKTOP) --- */
 .project_mini_card {
-    background: transparent;
+    background: rgba(255, 255, 255, 0.4); 
+    backdrop-filter: blur(8px); 
+    -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.6);
     border-radius: 30px;
     padding: 2.5rem 2rem;
@@ -35,25 +37,26 @@
     justify-content: space-between;
     box-sizing: border-box;
     height: 85%;
-    min-height: 420px;
+    min-height: 440px;
     
-    /* Obligamos a que cada tarjeta represente exactamente un tercio de la vista */
+    /* 3 tarjetas fijas por pantalla en escritorio */
     min-width: calc(33.3333% - 1.4rem);
     max-width: calc(33.3333% - 1.4rem);
     margin: 0 0.7rem;
+    flex-shrink: 0;
+    box-shadow: 0 8px 32px 0 rgba(245, 118, 137, 0.08); 
 }
 
-/* Tipografía de marca */
 .featured_tag {
     font-family: var(--font-2);
     color: var(--color-1);
-    font-size: 1.2rem;
-    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
 }
 
 .project_title {
     font-family: var(--font-2);
-    font-size: 2.4rem;
+    font-size: 2.2rem;
     color: var(--color-4);
     font-weight: 400;
     line-height: 1.1;
@@ -62,32 +65,32 @@
 
 .project_category {
     font-family: var(--font-1);
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 700;
     color: var(--color-4);
     letter-spacing: 0.5px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .project_description {
     font-family: var(--font-2);
-    font-size: 1.05rem;
+    font-size: 1rem;
     color: var(--color-4);
-    line-height: 1.4;
-    margin-bottom: 2rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
     flex: 1;
 }
 
 .tech_text_row {
     display: flex;
-    flex-wrap: wrap; /* Por si las tecnologías son largas y deben bajar */
-    gap: 0.5rem;     /* Esto le da una separación exacta a cada palabra */
-    margin-bottom: 1.8rem;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1.5rem;
 }
 
 .tech_item {
-    font-family: var(--font-1); /* Glitten */
-    font-size: 1.1rem;
+    font-family: var(--font-1);
+    font-size: 1rem;
     font-weight: 700;
     color: var(--color-4);
 }
@@ -106,8 +109,8 @@
     color: var(--color-4);
     background-color: var(--color-3);
     flex: 1;
-    height: 48px;
-    border-radius: 24px;
+    height: 44px;
+    border-radius: 22px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -115,23 +118,19 @@
     transition: transform 0.2s, background-color 0.2s;
 }
 
-.pill_btn.text_break {
-    line-height: 1.1;
-}
-
 .pill_btn:hover {
     transform: scale(1.05);
     background-color: var(--color-5);
 }
 
-/* Controles de flechas inferiores */
+/* FLECHAS INTERIORES */
 .carousel_arrows {
     display: flex;
     justify-content: center;
     gap: 1.2rem;
-    padding-bottom: 2.5rem;
+    padding-bottom: 2rem;
     width: 100%;
-    z-index: 50; /* Por encima de cualquier degradado de fondo */
+    z-index: 50;
 }
 
 .arrow_btn {
@@ -145,7 +144,6 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    pointer-events: auto; /* Asegura que el botón responda al mouse */
     transition: background-color 0.2s, transform 0.2s;
 }
 
@@ -154,7 +152,91 @@
     height: 16px;
 }
 
-.arrow_btn:hover {
-    background-color: var(--color-5);
-    transform: scale(1.05);
+/* ==========================================================================
+   MEDIA QUERY - TABLETS (Muestra 2 tarjetas con espacio entre ellas)
+   ========================================================================== */
+@media screen and (max-width: 1024px) {
+    .project_mini_card {
+        min-width: calc(50% - 1.4rem);
+        max-width: calc(50% - 1.4rem);
+        margin: 0 0.7rem;
+        padding: 2.2rem 1.8rem;
+    }
+}
+
+/* ==========================================================================
+   MEDIA QUERY - CELULARES (¡CORREGIDO CON SEPARACIÓN FLUIDA!)
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+    .carousel_container {
+        padding: 0; 
+    }
+
+    .carousel_viewport {
+        align-items: center;
+        width: 100%;
+    }
+
+    .project_mini_card {
+        min-width: calc(100% - 2rem) !important;
+        max-width: calc(100% - 2rem) !important;
+        margin: 0 1rem; 
+        
+        /* SOLUCIÓN: Reducimos drásticamente los paddings verticales y quitamos el min-height excesivo */
+        padding: 1.5rem 1.5rem; 
+        height: auto;
+        min-height: auto; /* Permite que la tarjeta se encoja verticalmente */
+        justify-content: flex-start; /* Alinea el contenido de forma orgánica */
+        gap: 0.8rem; /* Controla el espacio uniforme entre cada elemento interno */
+        
+        background: rgba(255, 255, 255, 0.65); 
+        box-shadow: 0 10px 30px rgba(245, 118, 137, 0.15);
+    }
+
+    /* Ajustes de espaciados de los textos para evitar vacíos visuales */
+    .featured_tag {
+        font-size: 0.95rem;
+        margin-bottom: 0;
+    }
+
+    .project_title {
+        font-size: 1.8rem;
+        margin-bottom: 0;
+    }
+
+    .project_category {
+        font-size: 0.85rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .project_description {
+        font-size: 0.95rem;
+        line-height: 1.45;
+        margin-bottom: 0.5rem;
+        flex: none; /* Evita que este bloque empuje el contenido hacia abajo forzadamente */
+    }
+
+    .tech_text_row {
+        margin-bottom: 0.5rem;
+        gap: 0.3rem;
+    }
+
+    .tech_item {
+        font-size: 0.95rem;
+    }
+
+    .project_links {
+        margin-top: 0.5rem;
+        gap: 0.8rem;
+    }
+
+    .pill_btn {
+        height: 42px; /* Botones ligeramente más esbeltos */
+        font-size: 0.85rem;
+    }
+
+    .carousel_arrows {
+        padding-bottom: 1rem;
+        margin-top: 0.8rem;
+    }
 }

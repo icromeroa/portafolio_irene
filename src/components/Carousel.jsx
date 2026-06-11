@@ -32,28 +32,28 @@ const projects = [
     github: "https://github.com/catryry/2204.git",
     figma: null, 
     demo: "https://2204.netlify.app"
-  },
-//     {
-//     id: 4,
-//     title: "Virtual Letters App",
-//     category: "Frontend Development",
-//     description: "A personalized, interactive static web application built as a virtual birthday gift simulation, featuring custom state-driven card animations and tailored messaging templates.",
-//     technologies: ["React", "JavaScript", "CSS"],
-//     github: "https://github.com/catryry/2204.git",
-//     figma: null, 
-//     demo: "https://2204.netlify.app/letters"
-//   }
+  }
 ];
 
 export default function Carousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  
-  // El límite máximo ahora se adapta dinámicamente
-  const maxIndex = projects.length - 3;
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
+  // Escuchar el cambio de tamaño de la pantalla en tiempo real
   useEffect(() => {
-    console.log(`%c[CARRUSEL] Índice actualizado: ${currentIndex} / Máximo permitido: ${maxIndex}`, "color: #F57689; font-weight: bold;");
-  }, [currentIndex, maxIndex]);
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Breakpoints idénticos a los del CSS
+  const isMobile = windowWidth <= 768;   // 1 Card en pantalla
+  const isTablet = windowWidth > 768 && windowWidth <= 1024; // 2 Cards en pantalla
+
+  // Ajuste del límite máximo según el espacio visible
+  const maxIndex = isMobile ? projects.length - 1 : isTablet ? projects.length - 2 : projects.length - 3;
 
   const nextProject = (e) => {
     e.stopPropagation();
@@ -65,33 +65,35 @@ export default function Carousel() {
     setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
   };
 
-  const translationValue = currentIndex * 33.3333;
+  // Desplazamiento dinámico: Móvil va de 100% en 100%, Tablet de 50% en 50%, Desktop de 33.33%
+  const translationFactor = isMobile ? 100 : isTablet ? 50 : 33.3333;
+  const translationValue = currentIndex * translationFactor;
 
   return (
     <div className="carousel_container">
       
       <div className="carousel_viewport">
+        {/* CORRECCIÓN: Quitamos style={{transform}} y usamos animate={{x}} controlado por Framer Motion */}
         <motion.div 
           className="carousel_track"
-          style={{ transform: `translateX(-${translationValue}%)` }}
-          transition={{ type: "spring", stiffness: 100, damping: 20 }}
+          animate={{ x: `-${translationValue}%` }}
+          transition={{ type: "spring", stiffness: 120, damping: 20 }}
         >
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <div key={project.id} className="project_mini_card">
               <span className="featured_tag">✦ Featured Project</span>
               <h2 className="project_title">{project.title}</h2>
               <p className="project_category">{project.category.toUpperCase()}</p>
               <p className="project_description">{project.description}</p>
 
-            <div className="tech_text_row">
-            {project.technologies.map((tech, index) => (
-                <span key={tech} className="tech_item">
-                {tech}
-                {/* Si no es el último elemento, añade una coma y un espacio */}
-                {index < project.technologies.length - 1 && ", "}
-                </span>
-            ))}
-            </div>
+              <div className="tech_text_row">
+                {project.technologies.map((tech, index) => (
+                  <span key={tech} className="tech_item">
+                    {tech}
+                    {index < project.technologies.length - 1 && ", "}
+                  </span>
+                ))}
+              </div>
 
               <div className="project_links">
                 {project.demo && (
@@ -117,8 +119,7 @@ export default function Carousel() {
         </motion.div>
       </div>
 
-      {/* Condicional: Las flechas solo se renderizan e inyectan en el DOM si hay más de 3 proyectos */}
-      {projects.length > 3 && (
+      {(isMobile || isTablet || projects.length > 3) && (
         <div className="carousel_arrows">
           <button onClick={prevProject} className="arrow_btn" aria-label="Anterior">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">

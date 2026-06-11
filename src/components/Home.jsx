@@ -1,11 +1,7 @@
 import '../styles/home.css'
-import { AnimatePresence, motion, useAnimation, useMotionValue, useTransform } from "framer-motion"
-import { routes } from '../routes'
-import { Link, useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
-
+import { AnimatePresence, motion, useAnimation } from "framer-motion"
+import { useNavigate } from 'react-router-dom'
 import React from 'react'
-
 
 const Home = () => {
     const navigate = useNavigate();
@@ -28,11 +24,9 @@ const Home = () => {
             transition: {
                 duration: .25,
             },
-            scale: 1.1,
+            scale: 1.05,
         },
     };
-
-
 
     const gradientVariantsB2 = {
         initial: {
@@ -44,25 +38,11 @@ const Home = () => {
             transition: {
                 duration: .25,
             },
-            scale: 1.1,
+            scale: 1.05,
         },
     };
 
     const controls = useAnimation();
-
-    // Función para animar el cambio de colores del gradiente
-    const animateLinearGradient = async () => {
-        while (true) {
-            await controls.start({
-                background: 'linear-gradient(to right, #F57689, #FDB7C0, #FFA7AE)',
-                transition: { duration: 2, ease: 'linear' },
-            });
-            await controls.start({
-                background: 'linear-gradient(to right, #FFA7AE, #F57689, #FDB7C0)',
-                transition: { duration: 2, ease: 'linear' },
-            });
-        }
-    };
 
     // Iniciar la animación al montar el componente
     React.useEffect(() => {
@@ -89,33 +69,27 @@ const Home = () => {
         };
     }, []);
 
-
     return (
         <AnimatePresence>
             <motion.div className='main_page'
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 1, ease: 'easeInOut', delay: 1 }}
+                transition={{ duration: 1, ease: 'easeInOut', delay: 0.2 }}
             >
-                <motion.section className="section_left"
-                    initial={{ x: '0vw' }}
-                    animate={{ x: "0vw" }}
-                >
+                <motion.section className="section_left">
                     <div>
-                        <motion.p
-                        >
+                        <p className="tagline">
                             UI/UX Enthusiast & Front-End Developer
-                        </motion.p>
-                        <motion.h1
-                            className="title_left">
+                        </p>
+                        <h1 className="title_left">
                             Coding With Style
-                        </motion.h1>
+                        </h1>
                         <div className='buttons_box'>
                             <motion.button
                                 className='button_contact'
                                 whileHover="hover"
-                                whileTap={{ scale: 0.9 }}
+                                whileTap={{ scale: 0.95 }}
                                 variants={gradientVariantsB2}
                                 initial="initial"
                                 onClick={handleRouteC}
@@ -125,37 +99,31 @@ const Home = () => {
                             <motion.button
                                 className='button_projects'
                                 whileHover="hover"
-                                whileTap={{ scale: 0.9 }}
+                                whileTap={{ scale: 0.95 }}
                                 variants={gradientVariants}
                                 initial="initial"
                                 onClick={handleRouteW}
                             >
                                 View Projects
                             </motion.button>
-
                         </div>
                     </div>
-
                 </motion.section>
 
-                <motion.section
+                {/* CORRECCIÓN: Quitamos dimensiones fijas en línea y sumamos clase css */}
+                <motion.section 
+                    className="section_right"
                     initial={{ background: 'linear-gradient(to right, #F57689, #FDB7C0, #FFA7AE)' }}
                     animate={controls}
-                    style={{
-                        width: '50vw',
-                        height: '100vh',
-
-                    }}
                 >
                     <div className='text_right'>
-                        <h2 className="greeting">Hi. I'm Irene Romero</h2>
+                        <h2 className="greeting">Hi, I'm Irene Romero</h2>
                         <h1 className="title_right">Systems Engineering Student</h1>
                     </div>
                 </motion.section>
             </motion.div>
         </AnimatePresence >
-
     )
 }
 
-export default Home
+export default Home;

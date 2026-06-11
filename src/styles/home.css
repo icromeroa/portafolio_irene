@@ -1,91 +1,206 @@
-.title_left {
-    color: var(--color-1);
-}
-
+/* ==========================================================================
+   ESTILOS BASE (ESCRITORIO - MONITORES GRANDES)
+   ========================================================================== */
 .main_page {
     height: 100vh;
     width: 100vw;
     display: flex;
+    flex-direction: row; /* En PC se muestran lado a lado */
     align-items: center;
     justify-content: space-between;
+    overflow: hidden;
+    box-sizing: border-box;
 }
-
-.text_right {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-end;
-    padding: 3%;
-}
-
-.greeting {
-    color: var(--color-3);
-    font-size: 1.3vw;
-}
-
-.title_right {
-    font-size: 3vw;
-    opacity: 20%;
-}
-
 
 .section_left {
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 5%;
+    box-sizing: border-box;
 }
 
 .section_left div {
-    padding: 2%;
-    width: 30vw;
+    width: 35vw;
 }
 
-.section_left div p {
+.tagline {
     font-family: var(--font-2);
-    margin-bottom: 1%;
+    font-size: 1.2rem;
+    color: var(--color-4);
+    margin-bottom: 0.5rem;
 }
 
-.section_left .title_left {
-    font-size: 3vw;
-    margin: 2% 0% 2% 0%;
+.title_left {
+    font-family: var(--font-1);
+    font-size: 4vw;
+    color: var(--color-1);
+    line-height: 1.1;
+    margin: 1rem 0 2rem 0;
 }
 
 .buttons_box {
-    height: 9vh;
     display: flex;
-    align-items: flex-start;
-    justify-content: space-around;
-}
-
-
-.button_contact {
-    background-color: var(--color-3);
-    color: var(--color-1);
-
-}
-
-.button_projects {
-    background-color: var(--color-1);
-    color: var(--color-4);
+    gap: 1rem;
+    width: 100%;
 }
 
 .button_contact,
 .button_projects {
-    font-size: 1.4vw;
+    font-family: var(--font-1);
+    font-size: 1rem;
+    font-weight: 600;
     border: none;
-    border-radius: 30rem;
-    height: 100%;
-    width: 45%;
-    text-decoration: none;
+    border-radius: 30px;
+    height: 50px;
+    width: 48%;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.button_contact {
+    background-color: var(--color-3);
+    color: var(--color-4);
+}
+
+.button_projects {
+    background-color: var(--color-1);
+    color: #ffffff;
+}
+
+/* CONTENEDOR DERECHO (ROSA) */
+.section_right {
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    box-sizing: border-box;
+}
+
+.text_right {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 8%;
+    text-align: right;
+}
+
+.greeting {
+    font-family: var(--font-1);
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+}
+
+.title_right {
+    font-family: var(--font-1);
+    font-size: 3.5vw;
+    color: #ffffff;
+    opacity: 0.25;
+    line-height: 1.1;
 }
 
 
-@media screen and (width <=800px) {
-    .element {
-        /* La media query se aplica para 
-         resoluciones menores o iguales a 800px */
+/* ==========================================================================
+   MEDIA QUERY - TABLETS (PANTALLAS MEDIANAS)
+   ========================================================================== */
+@media screen and (max-width: 1024px) {
+    .section_left div {
+        width: 40vw;
+    }
+    .title_left {
+        font-size: 4.5vw;
+    }
+    .title_right {
+        font-size: 4.5vw;
+    }
+}
+
+
+/* ==========================================================================
+   MEDIA QUERY - CELULARES (¡OBLIGA A COMPORTAMIENTO VERTICAL SEGURO!)
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+    .main_page {
+        flex-direction: column !important; /* Fuerza la dirección vertical */
+        height: 100vh;
+        width: 100%;
+        overflow-y: auto; /* Permite scroll natural si el celular es muy bajito */
+    }
+
+    /* SECCIÓN SUPERIOR CLARA: "Coding With Style" */
+    .section_left {
+        width: 100% !important;
+        height: 55vh !important; /* Ocupa un poco más de la mitad de la pantalla */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 1.5rem;
+        box-sizing: border-box;
+    }
+
+    .section_left div {
+        width: 100%;
+        text-align: center; /* Centrado estético para móvil */
+    }
+
+    .tagline {
+        font-size: 1rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .title_left {
+        font-size: 2.6rem; /* Medida fija súper estable */
+        margin: 0.5rem 0 1.5rem 0;
+    }
+
+    .buttons_box {
+        justify-content: center;
+        gap: 0.8rem;
+    }
+
+    .button_contact,
+    .button_projects {
+        height: 46px;
+        font-size: 0.95rem;
+        width: 135px; /* Evita que queden gigantes de lado a lado */
+    }
+
+    /* SECCIÓN INFERIOR ROSA: Datos de Estudiante */
+    .section_right {
+        width: 100% !important;
+        height: 45vh !important; /* Ocupa el resto inferior de la pantalla */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-top-left-radius: 40px; /* Bordes suaves premium */
+        border-top-right-radius: 40px;
+        box-sizing: border-box;
+    }
+
+    .text_right {
+        align-items: center; /* Centra los textos vertical y horizontalmente */
+        text-align: center;
+        padding: 2rem;
+    }
+
+    .greeting {
+        font-size: 1.2rem;
+        color: #ffffff;
+        margin-bottom: 0.4rem;
+    }
+
+    .title_right {
+        font-size: 2rem; /* Tamaño idéntico a tu boceto inicial */
+        color: #ffffff;
+        opacity: 0.35;
     }
 }

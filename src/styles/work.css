@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     background: radial-gradient(circle, rgba(255,255,255,0) 0%, rgba(245,118,137,0.22172619047619047) 61%, rgba(255,255,255,0) 100%);
+    overflow-x: hidden;
 }
 
 .title_section {
@@ -11,25 +12,31 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5%;
+    padding: 0 5%;
 }
 
 .title_page_1 {
     display: flex;
     align-items: center;
     margin-left: 6%;
+    position: relative; /* Clave para el título absoluto de fondo */
 }
 
-.title_page_1 h2{
+.title_page_1 h2 {
     color: var(--color-1);
-    font-size: 4vw;
+    font-size: 3rem; /* Cambiado a rem para estabilidad */
+    position: relative;
+    z-index: 2;
 }
 
 .title_page_1 h1 {
     color: var(--color-4);
-    opacity: 10%;
-    font-size: 9vw;
+    opacity: 8%;
+    font-size: 6rem; /* Cambiado a rem */
     position: absolute;
+    left: -1rem;
+    white-space: nowrap;
+    z-index: 1;
 }
 
 .deco_right {
@@ -38,10 +45,10 @@
 }
 
 .line {
-    height: .1vw;
+    height: 1px;
     width: 2vw;
     background: var(--color-4);
-    margin-right: 4%;
+    margin-right: 8px;
 }
 
 .line:nth-child(2) {
@@ -49,10 +56,41 @@
 }
 
 .sparkle_img {
-    height: 3vw;
-    width: 3vw;
+    height: 2rem;
+    width: 2rem;
+    margin-right: 10px;
 }
 
 .tab_work {
     height: 80%;
+    width: 100%;
+}
+
+/* ==========================================================================
+   MEDIA QUERY - WORK (Max-width: 768px)
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+    .title_section {
+        justify-content: center; /* Centramos el título en móviles */
+        padding-top: 5%;
+    }
+
+    .title_page_1 {
+        margin-left: 0;
+    }
+
+    .title_page_1 h2 {
+        font-size: 2.2rem;
+    }
+
+    .title_page_1 h1 {
+        font-size: 4.5rem;
+        left: 50%;
+        transform: translateX(-50%); /* Centra el texto transparente de fondo */
+    }
+
+    /* Ocultamos las líneas decorativas en celular para ganar espacio horizontal */
+    .deco_right {
+        display: none;
+    }
 }

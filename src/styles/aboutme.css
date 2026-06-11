@@ -1,67 +1,129 @@
+/* --- CONTENEDOR PRINCIPAL ESPECÍFICO --- */
 .main_page {
     height: 100vh;
     width: 100vw;
+    display: flex; /* Asegura que la línea se alinee a la izquierda en Desktop */
+    flex-direction: row; 
+    overflow-x: hidden;
 }
 
+/* --- BARRA LATERAL CON LETRAS (MA / AV) --- */
 .line_left {
     width: 6vw;
     height: 100%;
     background: var(--color-1);
     color: var(--color-2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; /* Evita que la barra se aplaste */
 }
 
 .letter {
+    transform: rotate(-90deg);
     -webkit-transform: rotate(-90deg);
     -moz-transform: rotate(-90deg);
-    margin: 3vw;
+    margin: 3vw 0;
+    font-weight: bold;
 }
 
 .line_about_me {
     border-right: 1px var(--color-2) solid;
     height: 5vw;
-    width: 3vw;
-    margin-top: 2vw;
+    width: 0px; /* Corregido para que sea una línea delgada real */
+    margin: 2vw 0;
 }
 
+/* --- SECCIÓN DEL CONTENIDO (DERECHA) --- */
 .main_division {
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100%;
     background: linear-gradient(160deg, rgba(255,255,255,0) 0%, rgba(255,218,221,1) 35%, rgba(250,118,139,1) 100%);
+    overflow-y: auto; /* Permite scroll si el texto de los Tabs es muy largo */
 }
 
 .about_page {
     display: flex;
     align-items: center;
+    position: relative; /* Clave para el posicionamiento absoluto del círculo */
     width: 100%;
-    padding: 3%;
+    padding: 4% 5%;
 }
 
 .title_page {
     color: var(--color-1);
-    font-size: 5vw;
+    font-size: 4rem; /* Cambiado a unidad fija para evitar deformaciones */
+    font-weight: bold;
 }
 
 .circle_bg {
     background: var(--color-3);
     opacity: 40%;
     border-radius: 50%;
-    width: 5vw;
-    height: 5vw;
+    width: 5rem;
+    height: 5rem;
     position: absolute;
-    z-index: -1;
-    left: 30%;
+    z-index: 1; /* Lo subimos un nivel para controlar el orden */
+    left: 12%;
+    top: 30%;
 }
 
 .stars_bg {
-    height: 8vw;
-    width: 8vw;
+    height: 4rem;
+    width: 4rem;
+    margin-left: 15px;
 }
 
 .tabs_description {
-    height: 100%;
+    height: auto;
     width: 100%;
     display: flex;
     justify-content: center;
+    padding: 2% 5%;
+}
+
+/* ==========================================================================
+   MEDIA QUERY PARA TABLETS Y MÓVILES (Max-width: 1024px)
+   ========================================================================== */
+@media screen and (max-width: 1024px) {
+    
+    /* 1. Ocultamos por completo la línea lateral izquierda que estorba */
+    .line_left {
+        display: none !important;
+    }
+
+    /* 2. Forzamos a la división principal a ocupar todo el espacio */
+    .main_division {
+        width: 100% !important;
+    }
+
+    /* 3. Reajustamos tamaños de títulos y elementos decorativos */
+    .title_page {
+        font-size: 2.8rem;
+    }
+
+    .circle_bg {
+        width: 3.5rem;
+        height: 3.5rem;
+        left: 8%;
+    }
+
+    .stars_bg {
+        height: 3rem;
+        width: 3rem;
+    }
+}
+
+/* Ajustes finos para celulares muy pequeños */
+@media screen and (max-width: 480px) {
+    .title_page {
+        font-size: 2.2rem;
+    }
+    
+    .about_page {
+        padding: 8% 5% 4% 5%;
+    }
 }

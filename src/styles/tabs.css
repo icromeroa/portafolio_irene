@@ -1,33 +1,34 @@
 .tab_wrapper {
     width: 80%;
     display: flex;
-    align-items: left;
+    align-items: flex-start;
     flex-direction: column;
-    
 }
 
 .tab_header {
     display: flex;
-    padding: 1vw;
-    
+    width: 100%;
+    padding: 1rem 0;
+    justify-content: flex-start;
+    gap: 10px; /* Reemplaza los márgenes problemáticos por una separación limpia */
 }
 
 .tab_item {
     position: relative;
-    
+    display: flex;
 }
 
 .tab_item a {
-    padding: .4vw 6vw;
+    display: inline-block; /* ¡Clave! Permite que el botón tome el padding correctamente */
+    padding: 0.5rem 1.5rem; /* Padding fijo basado en texto, no en el ancho de pantalla */
     color: var(--color-4);
     text-decoration: none;
     border: 1px solid var(--color-3);
-    border-radius: 30vw;
+    border-radius: 30rem;
     text-align: center;
-    font-size: 1.3vw;
-    margin: 1vw;
+    font-size: 1rem; /* Letra legible por defecto */
     font-family: var(--font-2);
-    
+    transition: all 0.2s ease-in-out;
 }
 
 .tab_item.selected a {
@@ -37,7 +38,7 @@
 
 .indicator {
     position: absolute;
-    bottom: -1.5vw;
+    bottom: -8px;
     left: 0;
     right: 0;
     height: 2px;
@@ -46,20 +47,59 @@
 
 .tab_content {
     flex: 1;
-    padding: 5%;
+    padding: 4% 0;
     color: var(--color-4);
     height: 100%;
-    width: 80%;
+    width: 100%; /* Ampliado al 100% para aprovechar el espacio del wrapper */
     overflow: hidden;
-    
 }
 
 .tab_content h2 {
     color: var(--color-1);
+    font-size: 1.8rem;
     padding-bottom: 2%;
 }
 
 .tab_content p {
     font-family: var(--font-2);
-    font-size: 140%;
+    font-size: 1.1rem; /* Escalado a un tamaño estándar y legible */
+    line-height: 1.6;  /* Espaciado de línea más cómodo para leer */
+}
+
+/* ==========================================================================
+   MEDIA QUERY PARA TABLETS Y CELULARES (Max-width: 768px)
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+    .tab_wrapper {
+        width: 100%; /* Ocupa todo el ancho en móviles */
+    }
+
+    .tab_header {
+        justify-content: space-between; /* Distribuye las pestañas equitativamente */
+        gap: 5px;
+        flex-wrap: wrap; /* Si la pantalla es muy chica, las pestañas bajan fluidamente sin romperse */
+    }
+
+    .tab_item {
+        flex: 1; /* Hace que todos los botones pesen lo mismo */
+        min-width: 70px; /* Evita que se colapsen las palabras */
+    }
+
+    .tab_item a {
+        width: 100%; /* Forzamos a que el enlace llene su caja flex */
+        padding: 0.5rem 0.5rem;
+        font-size: 0.9rem; /* Un toque más compacto pero perfectamente visible */
+    }
+
+    .tab_content {
+        padding: 8% 0;
+    }
+
+    .tab_content h2 {
+        font-size: 1.4rem;
+    }
+
+    .tab_content p {
+        font-size: 1rem;
+    }
 }
