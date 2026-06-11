@@ -66,6 +66,7 @@ const Home = () => {
 
         return () => {
             isMounted = false;
+            controls.stop(); // <-- esto resuelve/corta la animación en curso
         };
     }, []);
 
